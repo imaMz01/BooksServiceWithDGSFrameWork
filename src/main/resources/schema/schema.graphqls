@@ -1,0 +1,25 @@
+type Query {
+    allBooks: [Book],
+    bookById (id : String) : Book
+}
+
+type Mutation {
+    addBook (bookRequestDto : BookRequestDto) : Book,
+    updateBook (bookRequestDto : BookRequestDto, id : String) : Book
+    deleteBook (id : String) :String
+}
+
+type Subscription {
+    publisherBook : Book
+}
+
+type Book {
+    id: String
+    title: String
+    author: String
+}
+
+input BookRequestDto{
+    title: String
+    author: String
+}
