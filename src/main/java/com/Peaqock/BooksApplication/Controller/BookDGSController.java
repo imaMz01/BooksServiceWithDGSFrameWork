@@ -1,8 +1,8 @@
 package com.Peaqock.BooksApplication.Controller;
 
-import com.Peaqock.BooksApplication.Dto.BookRequestDto;
 import com.Peaqock.BooksApplication.Entity.Book;
 import com.Peaqock.BooksApplication.Service.BookService;
+import com.Peaqock.BooksApplication.codegen.types.BookRequestDto;
 import com.netflix.graphql.dgs.*;
 import lombok.RequiredArgsConstructor;
 import org.reactivestreams.Publisher;
@@ -34,8 +34,8 @@ public class BookDGSController {
     public Book addBook(@Argument BookRequestDto bookRequestDto){
         Book book = Book.builder()
                 .id(UUID.randomUUID().toString())
-                .title(bookRequestDto.title())
-                .author((bookRequestDto.author()))
+                .title(bookRequestDto.getTitle())
+                .author((bookRequestDto.getAuthor()))
                 .build();
         sinks.forEach(
                 sink -> sink.tryEmitNext(book)

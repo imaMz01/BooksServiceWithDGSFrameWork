@@ -1,13 +1,12 @@
 package com.Peaqock.BooksApplication.Service;
 
-import com.Peaqock.BooksApplication.Dto.BookRequestDto;
 import com.Peaqock.BooksApplication.Entity.Book;
 import com.Peaqock.BooksApplication.Repository.BookRepository;
+import com.Peaqock.BooksApplication.codegen.types.BookRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -39,10 +38,10 @@ public class BookServiceImp implements BookService{
     }
 
     @Override
-    public Book update(BookRequestDto bookRequestDto,String id) {
+    public Book update(BookRequestDto bookRequestDto, String id) {
         Book bookToSave = findById(id);
-        bookToSave.setAuthor(bookRequestDto.author());
-        bookToSave.setTitle(bookRequestDto.title());
+        bookToSave.setAuthor(bookRequestDto.getAuthor());
+        bookToSave.setTitle(bookRequestDto.getTitle());
         return bookRepository.save(bookToSave);
     }
 }
